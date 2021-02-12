@@ -6,25 +6,6 @@ defaults: &defaults
     - image: koding/circle@sha256:16eb972fda89007f9e058da4330ec3486964e79b5f8143ca9e0c5019047b98a9
   working_directory: /koding
 
-workflows:
-  version: 2
-  default:
-    jobs:
-      - dependencies
-      - configure:
-          requires:
-            - dependencies
-      - lint:
-          requires:
-            - dependencies
-      - client:
-          requires:
-            - configure
-      - go:
-          requires:
-            - configure
-      - go-test:
-          requires:
             - go
       - backend:
           requires:
